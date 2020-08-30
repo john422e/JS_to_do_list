@@ -1,7 +1,8 @@
 const TODOS_KEY = 'todos'
 // store each to do item
 let toDos = [];
-const itemText = document.querySelector("#create-to-do input");
+const itemText = document.querySelector("#create-to-do input[id='item-name']");
+const itemFreq = document.querySelector("#create-to-do input[id='item-frequency']");
 const addItem = document.querySelector("#create-to-do button");
 const itemListElements = document.querySelector("#to-do-list ol");
 
@@ -76,7 +77,7 @@ function renderItem(item, i) {
       itemCheckbox.type = 'checkbox';
       itemCheckbox.dataset.index = j;
       itemCheckbox.checked = item.checkboxList[j].completed;
-      itemCheckbox.classList.add('completed');
+      itemCheckbox.classList.add('recur-completed');
       checkboxItem.appendChild(itemCheckbox);
       newList.appendChild(checkboxItem);
     }
@@ -112,7 +113,7 @@ function loadToDos() {
 // MAIN
 // event listeners
 addItem.addEventListener("click", (event) => {
-  createToDo(itemText.value, 7);
+  createToDo(itemText.value, itemFreq.value);
 });
 
 // listener for completion checkboxes
@@ -122,6 +123,10 @@ itemListElements.addEventListener("change", (event) => {
     const index = event.target.dataset.index;
     toDos[index].completed = event.target.checked;
     saveToDos();
+  } else if( event.target.classList.contains('recur-completed') ) {
+    console.log("RECUR CHANGE");
+    const index = event.target.dataset.index;
+    console.log(index);
   }
 })
 
