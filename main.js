@@ -75,6 +75,7 @@ function renderItem(item, i) {
       const checkboxItem = document.createElement('li');
       const itemCheckbox = document.createElement('input');
       itemCheckbox.type = 'checkbox';
+      itemCheckbox.dataset.parentIndex = i;
       itemCheckbox.dataset.index = j;
       itemCheckbox.checked = item.checkboxList[j].completed;
       itemCheckbox.classList.add('recur-completed');
@@ -125,8 +126,10 @@ itemListElements.addEventListener("change", (event) => {
     saveToDos();
   } else if( event.target.classList.contains('recur-completed') ) {
     console.log("RECUR CHANGE");
+    const parentIndex = event.target.dataset.parentIndex;
     const index = event.target.dataset.index;
-    console.log(index);
+    toDos[parentIndex].checkboxList[index].completed = event.target.checked;
+    saveToDos();
   }
 })
 
