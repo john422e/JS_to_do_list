@@ -78,6 +78,7 @@ function renderItem(item, i) {
       itemCheckbox.checked = item.checkboxList[j].completed;
       itemCheckbox.classList.add('completed');
       checkboxItem.appendChild(itemCheckbox);
+      newList.appendChild(checkboxItem);
     }
   }
 
