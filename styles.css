@@ -1,3 +1,16 @@
 body {
   font-family: sans-serif;
 }
+
+ul {
+  list-style-type: none;
+  margin: 5px;
+  padding: 5px;
+  overflow: hidden;
+  background-color: #AEB6BF;
+}
+
+
+li[id="inline"] {
+  float: left;
+}

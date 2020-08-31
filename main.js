@@ -6,7 +6,6 @@ const itemFreq = document.querySelector("#create-to-do input[id='item-frequency'
 const addItem = document.querySelector("#create-to-do button");
 const itemListElements = document.querySelector("#to-do-list ol");
 
-
 function createToDo(text, frequency) {
   console.log(text, frequency);
   // create toDo item
@@ -68,11 +67,12 @@ function renderItem(item, i) {
   newItem.appendChild(deleteButton);
 
   // create list for each toDo item
-  const newList = document.createElement('ol');
+  const newList = document.createElement("ul");
   // create checkbox for each iteration of each item
   if( item.checkboxList ) {
     for(let j=0; j < item.checkboxList.length; j++ ) {
       const checkboxItem = document.createElement('li');
+      checkboxItem.setAttribute('id', 'inline');
       const itemCheckbox = document.createElement('input');
       itemCheckbox.type = 'checkbox';
       itemCheckbox.dataset.parentIndex = i;
